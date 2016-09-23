@@ -66,7 +66,11 @@ public class MoveToFront<Item extends Comparable<Item>> implements Iterable<Item
         int location = find(item);
         DoubleNode oldFirst = first;
         first = deletable(first, item).orElse(new DoubleNode(item, first));
-        first.setNext(oldFirst);
+        if(first == oldFirst ){
+            first = oldFirst;
+        } else{
+            first.setNext(oldFirst);
+        }        
         if (location != 0)
             N++;
         return location;
